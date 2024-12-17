@@ -35,6 +35,5 @@ ren dashboard-adminuser.yaml.txt dashboard-adminuser.yaml
 
 kubectl apply -f dashboard-adminuser.yaml
 
-
-curl.exe -LO "https://dl.k8s.io/release/v1.32.0/bin/windows/amd64/kubectl.exe"
+kbectl -n kubernetes-dashboard create token admin-user
 
