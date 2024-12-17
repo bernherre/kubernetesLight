@@ -17,3 +17,4 @@ https://github.com/kubernetes/dashboard  -- Kubernetes Dashboard install
 
 https://kubernetes.io/docs/concepts/workloads/pods/ -- Pods Docu
 
+https://kubernetes.io/docs/concepts/workloads/controllers/deployment/ -- Deployment
