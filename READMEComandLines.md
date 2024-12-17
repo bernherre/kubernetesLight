@@ -69,3 +69,12 @@ kubectl exec -it <POD_NAME> -c <CONTAINER_NAME> -- /bin/bash
 cat /run/secrets/kubernetes.io/serviceaccount/token && echo
 
 kubectl delete pod nginx
+
+kubectl apply -f nginx-deplyment.yaml
+
+kubectl get deployments.apps
+
+kubectl get deployments
+
+kubectl scale deployment ngnix-deployment  --replicas=6
+
