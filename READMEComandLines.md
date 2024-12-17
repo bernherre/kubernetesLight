@@ -76,5 +76,5 @@ kubectl get deployments.apps
 
 kubectl get deployments
 
-kubectl scale deployment ngnix-deployment  --replicas=6
+kubectl scale deployment nginx-deployment  --replicas=6
 
