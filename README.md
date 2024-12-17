@@ -13,3 +13,5 @@ https://helm.sh/docs/intro/install/ --- Helm Install windows
 
 https://helm.sh/docs/intro/cheatsheet/  ---Helm cheatsheet
 
+https://github.com/kubernetes/dashboard  -- Kubernetes Dashboard install
+
