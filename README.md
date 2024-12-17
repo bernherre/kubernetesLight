@@ -7,6 +7,7 @@ https://kubernetes.io/docs/tasks/tools/ -- Kubernetes install tools
 https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/  --Kubernetes install windows
 
 
+
 https://scoop.sh/-- Windows Intall
 
 https://helm.sh/docs/intro/install/ --- Helm Install windows
@@ -18,3 +19,7 @@ https://github.com/kubernetes/dashboard  -- Kubernetes Dashboard install
 https://kubernetes.io/docs/concepts/workloads/pods/ -- Pods Docu
 
 https://kubernetes.io/docs/concepts/workloads/controllers/deployment/ -- Deployment
+
+
+
+https://labs.play-with-k8s.com/  -- k8s labs 
