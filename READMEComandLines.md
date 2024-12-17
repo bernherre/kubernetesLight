@@ -62,4 +62,7 @@ kubectl get pods
 
 kubectl logs nginx
 
-kubectl exec -it nginx -c nginx  /bin/bash
+
+kubectl exec -it <POD_NAME> -c <CONTAINER_NAME> -- /bin/bash
+
+cat /run/secrets/kubernetes.io/serviceaccount/token && echo
