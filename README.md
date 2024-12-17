@@ -20,6 +20,7 @@ https://kubernetes.io/docs/concepts/workloads/pods/ -- Pods Docu
 
 https://kubernetes.io/docs/concepts/workloads/controllers/deployment/ -- Deployment
 
+https://kubernetes.io/docs/concepts/services-networking/service/  -- Services
 
 
 https://labs.play-with-k8s.com/  -- k8s labs 
