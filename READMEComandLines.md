@@ -52,3 +52,8 @@ kubectl apply -f dashboard-adminuser.yaml
 
 kbectl -n kubernetes-dashboard create token admin-user
 
+scoop install nano
+
+nano ngix-pod.yaml
+
+
