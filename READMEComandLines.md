@@ -60,6 +60,6 @@ kubectl apply -f nginx-pod.yaml
 
 kubectl get pods
 
-kubectl logs nginx-pod
+kubectl logs nginx
 
-
+kubectl exec -it nginx -c nginx-container  /bin/bash
