@@ -62,4 +62,4 @@ kubectl get pods
 
 kubectl logs nginx
 
-kubectl exec -it nginx -c nginx-container  /bin/bash
+kubectl exec -it nginx -c nginx  /bin/bash
