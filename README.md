@@ -15,3 +15,5 @@ https://helm.sh/docs/intro/cheatsheet/  ---Helm cheatsheet
 
 https://github.com/kubernetes/dashboard  -- Kubernetes Dashboard install
 
+https://kubernetes.io/docs/concepts/workloads/pods/ -- Pods Docu
+
