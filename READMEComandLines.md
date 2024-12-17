@@ -56,4 +56,10 @@ scoop install nano
 
 nano ngix-pod.yaml
 
+kubectl apply -f nginx-pod.yaml
+
+kubectl get pods
+
+kubectl logs nginx-pod
+
 
