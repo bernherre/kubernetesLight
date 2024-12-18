@@ -22,5 +22,7 @@ https://kubernetes.io/docs/concepts/workloads/controllers/deployment/ -- Deploym
 
 https://kubernetes.io/docs/concepts/services-networking/service/  -- Services
 
+https://kubernetes.io/docs/concepts/services-networking/ingress/  -- Ingress
+
 
 https://labs.play-with-k8s.com/  -- k8s labs 
