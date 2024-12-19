@@ -78,3 +78,4 @@ kubectl get deployments
 
 kubectl scale deployment nginx-deployment  --replicas=6
 
+kubectl create namespace n3 ## create namespaces before deployment
