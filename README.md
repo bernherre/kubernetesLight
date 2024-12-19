@@ -24,5 +24,9 @@ https://kubernetes.io/docs/concepts/services-networking/service/  -- Services
 
 https://kubernetes.io/docs/concepts/services-networking/ingress/  -- Ingress
 
+https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ -- Namespaces
+
+https://kubernetes.io/docs/concepts/configuration/configmap/ -- ConfigMaps
+
 
 https://labs.play-with-k8s.com/  -- k8s labs 
