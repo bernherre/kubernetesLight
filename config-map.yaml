@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: nginx
+data:
+  database_url: "mysql://db-server:3306/mydb"
+  api_key: "my-secret-api-key"
