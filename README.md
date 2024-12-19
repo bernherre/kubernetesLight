@@ -28,5 +28,12 @@ https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ --
 
 https://kubernetes.io/docs/concepts/configuration/configmap/ -- ConfigMaps
 
+https://kubernetes.io/docs/concepts/configuration/secret/ -- secrets
+
+https://kubernetes.io/docs/concepts/storage/  -- storage
+
+
+Demo-curse- Zip anhang
+
 
 https://labs.play-with-k8s.com/  -- k8s labs 
