@@ -10,3 +10,16 @@ spec:
     - ReadWriteOnce
   hostPath:
     path: /data/my-pv
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
