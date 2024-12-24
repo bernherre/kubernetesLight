@@ -32,6 +32,10 @@ https://kubernetes.io/docs/concepts/configuration/secret/ -- secrets
 
 https://kubernetes.io/docs/concepts/storage/  -- storage
 
+https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/  -- examples in not productive way
+
+https://github.com/bitnami/charts  --- charts for productive solutions
+
 
 Demo-curse- Zip anhang
 
