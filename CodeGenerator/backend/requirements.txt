@@ -1,0 +1,9 @@
+fastapi>=0.111
+uvicorn[standard]>=0.30
+faiss-cpu>=1.8
+scikit-learn>=1.4
+langchain-openai>=0.2
+pydantic>=2.7
+reportlab>=3.6
+python-dotenv
+psutil>=5.1

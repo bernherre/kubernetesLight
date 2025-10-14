@@ -1,0 +1,73 @@
+# Byte-compiled / cache / logs
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Virtual env
+.venv/
+venv/
+.env/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python build
+build/
+dist/
+*.egg-info/
+
+# Node / Flutter
+.pub-cache/
+.dart_tool/
+.packages
+.melos_tool/
+build/
+
+# Ignore CI/CD (workflows) in this repo
+.github/
+ci/
+cd/
+
+# Misc
+*.sqlite3
+
+
+dbt/.databricks/
+databricks/.databricks/
+weapp/target/
+weapp/target/*
+weapp/dbt_packages/
+weapp/logs/
+weapp/dbt_internal_packages/
+weapp/dbt_packages/*
+weapp/logs/*
+weapp/dbt_internal_packages/*
+logs/
+dbtenv/
+logs/*
+dbtenv/*
+.vscode
+weapp/target/
+weapp/dbt_packages/
+weapp/logs/
+weapp/dbt_internal_packages/
+weapp/target/*
+weapp/dbt_packages/*
+weapp/logs/*
+weapp/dbt_internal_packages/*
+flutter/.databricks/
+flutter/.databricks/*
+flutter/.dbt/
+flutter/.dbt/*
+flutter/.idea/
+flutter/.idea/*
+flutter/.dart_tool/
+flutter/.dart_tool/*
+.vs/
+.vs/*
+.env
