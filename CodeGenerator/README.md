@@ -106,4 +106,18 @@ backend/
  ┣ pubspec.yaml
  ┗ analysis_options.yaml
 
+ # detener uvicorn (Ctrl+C) y arrancar de nuevo
+uvicorn api_main:app --host 0.0.0.0 --port 8000 --reload
+
+# prueba del endpoint de debug (si usas la Opción 1 con Body y text/plain):
+Invoke-RestMethod -Method Post `
+  -Uri "http://localhost:8000/debug/materialize" `
+  -ContentType "text/plain" `
+  -Body (Get-Content .\sample_ai_response.txt -Raw)
+
+# o si usas la Opción 2 (modelo JSON):
+Invoke-RestMethod -Method Post `
+  -Uri "http://localhost:8000/debug/materialize" `
+  -ContentType "application/json" `
+  -Body (@{ text = (Get-Content .\sample_ai_response.txt -Raw) } | ConvertTo-Json -Depth 5)
 

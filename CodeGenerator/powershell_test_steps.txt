@@ -1,0 +1,88 @@
+# ===============================
+# PowerShell test script (copy/paste line by line)
+# Validated for Windows PowerShell 5.1+ and PowerShell 7+
+# Save this file as: powershell_test_steps.txt
+# ===============================
+
+# --- 0) Ubicación del proyecto ---
+# Sitúate en el directorio donde tienes: api_main.py y gen_project.py
+# Ejemplo:
+#   cd C:\Users\TUUSUARIO\project-generator
+
+# --- 1) Entorno virtual (Windows) ---
+py -3 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -V
+
+# --- 2) Dependencias ---
+python -m pip install --upgrade pip
+pip install fastapi uvicorn python-dotenv reportlab psutil faiss-cpu scikit-learn langchain-openai
+
+# --- 3) (Opcional) Clave del modelo si usarás /generate con mode="model" ---
+# Si usarás sólo mode="text" puedes saltarte esta parte.
+# $env:OPENAI_API_KEY = "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# --- 4) Arrancar la API (en una nueva ventana de PowerShell) ---
+Start-Process -FilePath "powershell" -ArgumentList '-NoExit','-Command','uvicorn api_main:app --host 0.0.0.0 --port 8000 --reload'
+
+# Espera 3-5 segundos a que inicie
+Start-Sleep -Seconds 4
+
+# --- 5) Health-check ---
+Invoke-RestMethod http://localhost:8000/health
+
+# --- 6) Crear un archivo de ejemplo con el formato esperado (content = {...}) ---
+# Esto simula la respuesta del LLM en formato "content = {...}"
+$sample = @"
+content = {
+  "tree": "src/\ndata/\n",
+  "README.md": "# Hola\n\nEste es un proyecto de ejemplo materializado desde content={...}.",
+  "src/index.html": "<!doctype html>\n<html>\n<head><meta charset=\\"utf-8\\"><title>Demo</title></head>\n<body><h1>Hola desde index.html</h1></body>\n</html>",
+  "data/config.json": "{\n  \\"siteName\\": \\"Demo JSON Site\\",\n  \\"version\\": \\"1.0.0\\" \n}"
+}
+"@
+$sample | Out-File -FilePath .\sample_ai_response.txt -Encoding utf8
+
+# --- 7) Probar el endpoint /generate con mode="text" ---
+# Construimos el JSON del cuerpo usando el archivo recién creado
+$body = @{
+  mode = "text"
+  project_name = "demo_json_site"
+  text = Get-Content .\sample_ai_response.txt -Raw
+  faiss_dir = ".faiss_store"
+  allow_hidden_paths = $false
+  no_overwrite = $false
+  dry_run = $false
+} | ConvertTo-Json -Depth 10
+
+Invoke-RestMethod -Method Post -Uri "http://localhost:8000/generate" -ContentType "application/json" -Body $body
+
+# --- 8) Descargar el ZIP y el PDF de la respuesta ---
+Invoke-WebRequest -Uri "http://localhost:8000/download/demo_json_site" -OutFile ".\demo_json_site.zip"
+Invoke-WebRequest -Uri "http://localhost:8000/download-ai-pdf/demo_json_site" -OutFile ".\demo_json_site_ai_response.pdf"
+
+# Verifica que el zip exista
+Get-Item .\demo_json_site.zip
+# Verifica que el PDF exista
+Get-Item .\demo_json_site_ai_response.pdf
+
+# --- 9) Probar el generador stand-alone (sin API) ---
+# Materializa los archivos directamente desde sample_ai_response.txt
+python .\gen_project.py --from-file .\sample_ai_response.txt --out .\site --overwrite
+
+# Inspecciona lo generado
+Get-ChildItem .\site -Recurse
+
+# --- 10) Probar /zip con un path arbitrario (opcional) ---
+# Comprime el directorio \site y descarga el zip correspondiente
+$zipResp = Invoke-RestMethod -Uri "http://localhost:8000/zip?dir=$(Resolve-Path .\site)"
+# Nota: el endpoint /zip devuelve el archivo directamente. Si usa Invoke-RestMethod verás JSON/bytes.
+# Usa Invoke-WebRequest para guardar el zip en disco:
+Invoke-WebRequest -Uri "http://localhost:8000/zip?dir=$(Resolve-Path .\site)" -OutFile ".\site.zip"
+Get-Item .\site.zip
+
+# --- 11) Parar la API (si la levantaste con Start-Process) ---
+# Cierra la ventana que lanzó uvicorn, o si lo levantaste en este mismo shell:
+#   Ctrl + C
+# O, si necesitas matar por proceso:
+# Get-Process | Where-Object { $_.ProcessName -like "python*" -and $_.Path -like "*uvicorn*" } | Stop-Process -Force

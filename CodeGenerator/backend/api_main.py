@@ -7,7 +7,9 @@ from typing import Optional
 from datetime import datetime
 import platform
 
-from fastapi import FastAPI, HTTPException, Query
+import psutil  # <- necesario para /status
+
+from fastapi import FastAPI, HTTPException, Query, Body
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse, FileResponse
 from pydantic import BaseModel, Field
@@ -18,6 +20,7 @@ from dotenv import load_dotenv
 load_dotenv()
 # Set up OpenAI API key
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+GEN_PERMISSIVE = os.environ.get("GEN_PERMISSIVE")
 if not OPENAI_API_KEY:
     OPENAI_API_KEY = input("Please enter your OpenAI API key: ")
     os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
@@ -32,11 +35,8 @@ from reportlab.lib.units import cm
 import gen_project as gp  # tu módulo de materialización
 
 # ====== CONSTANTES ======
-
-DEFAULT_BASE_OUT = DEFAULT_BASE_OUT = os.environ.get("DEFAULT_BASE_OUT", "generated_projects")
-  # por defecto: C:\Users\TUUSUARIO\CodeGenOutput
+DEFAULT_BASE_OUT = os.environ.get("DEFAULT_BASE_OUT", "generated_projects")
 os.makedirs(DEFAULT_BASE_OUT, exist_ok=True)
- # <- ahora sí está declarado arriba
 
 # ====== APP ======
 app = FastAPI(title="Project Generator API")
@@ -112,6 +112,37 @@ def save_ai_response_pdf(text: str, out_dir: str, filename: str = "ai_response.p
     c.save()
     return pdf_path
 
+def _collect_files_map(root: str) -> dict[str, str]:
+    """
+    Lee todos los archivos de texto del proyecto materializado y
+    devuelve un dict ruta_relativa -> contenido_texto (para FAISS).
+    Ignora binarios comunes.
+    """
+    text_exts = {
+        ".txt",".md",".json",".yaml",".yml",".py",".js",".ts",".tsx",
+        ".jsx",".css",".html",".toml",".ini",".cfg",".env",".sh",".bat",
+        ".xml",".vue",".svelte",".mdx"
+    }
+    files_map: dict[str, str] = {}
+    for dirpath, _, filenames in os.walk(root):
+        for fn in filenames:
+            rel = os.path.relpath(os.path.join(dirpath, fn), root)
+            ext = os.path.splitext(fn)[1].lower()
+            if ext not in text_exts:
+                # Intento de lectura como texto por si acaso
+                try:
+                    with open(os.path.join(dirpath, fn), "r", encoding="utf-8") as f:
+                        files_map[rel] = f.read()
+                except Exception:
+                    continue
+            else:
+                try:
+                    with open(os.path.join(dirpath, fn), "r", encoding="utf-8") as f:
+                        files_map[rel] = f.read()
+                except Exception:
+                    # ignora archivos no-texto o permisos
+                    pass
+    return files_map
 
 # ====== ENDPOINTS ======
 @app.post("/generate")
@@ -148,21 +179,27 @@ def generate(req: GenerateRequest):
         out_dir=out_dir,
         overwrite=overwrite,
         dry_run=req.dry_run,
-        allow_hidden=req.allow_hidden_paths,
+        allow_hidden=True if os.getenv("GEN_PERMISSIVE", "0") == "1" else req.allow_hidden_paths,
     )
 
     # --- 3. (Opcional) Indexar con FAISS ---
     faiss_created = False
     faiss_path = None
-    if req.faiss_dir and written_map:
-        try:
-            idx_dir = os.path.join(req.faiss_dir, project_name)
-            gp.build_faiss_index(written_map, idx_dir)
-            faiss_created = True
-            faiss_path = os.path.abspath(idx_dir)
-        except Exception as e:
-            faiss_created = False
-            faiss_path = f"ERROR: {e}"
+    if req.faiss_dir:
+            try:
+                # Construimos SIEMPRE un files_map de ruta_relativa -> contenido_texto
+                files_map = _collect_files_map(out_dir)
+                if files_map:
+                    idx_dir = os.path.join(req.faiss_dir, project_name)
+                    gp.build_faiss_index(files_map, idx_dir)
+                    faiss_created = True
+                    faiss_path = os.path.abspath(idx_dir)
+                else:
+                    faiss_created = False
+                    faiss_path = "No se encontraron archivos de texto para indexar."
+            except Exception as e:
+                faiss_created = False
+                faiss_path = f"ERROR: {e}"
 
     # --- 4. Guardar respuesta original (txt + pdf) ---
     ai_txt_path = os.path.join(out_dir, "ai_response.txt")
@@ -193,17 +230,17 @@ def get_project_dir(project_name: str) -> str:
 
 @app.get("/zip")
 def zip_dir(dir: str = Query(..., description="Ruta del directorio a comprimir")):
-    if not os.path.isdir(dir):
+    """
+    Comprime exactamente el directorio 'dir' (ruta absoluta o relativa).
+    """
+    folder_path = os.path.abspath(dir)
+    if not os.path.isdir(folder_path):
         raise HTTPException(status_code=404, detail="Directorio no encontrado")
-    tmp_zip_path = shutil.make_archive(base_name="tmp_project", format="zip", root_dir=DEFAULT_BASE_OUT)
-    with open(tmp_zip_path, "rb") as f:
-        data = f.read()
-    os.remove(tmp_zip_path)
-    return StreamingResponse(
-        io.BytesIO(data),
-        media_type="application/zip",
-        headers={"Content-Disposition": f'attachment; filename="{os.path.basename(dir)}.zip"'},
-    )
+
+    base_name = os.path.basename(folder_path.rstrip(os.sep))
+    tmp_zip_path = shutil.make_archive(base_name=folder_path, format="zip", root_dir=folder_path)
+    # Lo servimos directo desde disco
+    return FileResponse(tmp_zip_path, media_type="application/zip", filename=f"{base_name}.zip")
     
 @app.get("/download/{project_name}")
 def download_project(project_name: str, base_out: str = DEFAULT_BASE_OUT):
@@ -225,19 +262,11 @@ def download_ai_pdf(project_name: str, base_out: str = DEFAULT_BASE_OUT):
 
 @app.get("/health")
 def health_check():
-    """
-    Health check básico: responde 200 si el servicio está vivo.
-    Ideal para load balancers o probes.
-    """
     return {"status": "ok", "message": "Service is healthy", "timestamp": datetime.utcnow().isoformat()}
 
 
 @app.get("/status")
 def status_all():
-    """
-    Endpoint extendido de estado: métricas del servidor y del entorno.
-    Incluye CPU, memoria, sistema operativo y uptime.
-    """
     process = psutil.Process(os.getpid())
     mem_info = process.memory_info()
 
@@ -260,10 +289,21 @@ def status_all():
         },
         "endpoints": [
             "/generate",
-            "/zip",
+            "/zip?dir=<abs_or_rel_path>",
             "/download/{project_name}",
             "/download-ai-pdf/{project_name}",
             "/health",
             "/status",
         ],
     }
+@app.post("/debug/materialize")
+def debug_materialize(text: str = Body(..., media_type="text/plain")):
+    # Solo usa el parser para ver qué archivos sacaría
+    files = gp.extract_code_blocks_with_names(text, allow_hidden=True)
+    if not files:
+        try:
+            content = gp.extract_content_dict(text)
+            return {"mode": "content_dict_keys", "keys": list(content.keys())}
+        except Exception as e:
+            return {"mode": "none", "error": str(e)}
+    return {"mode": "fences", "files": list(files.keys())[:50]}

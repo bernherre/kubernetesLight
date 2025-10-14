@@ -677,7 +677,7 @@ def chunk_section(section: ParsedSection, max_tokens: int, overlap: int) -> List
 def build_chunks(sections: List[ParsedSection]) -> List[Dict[str, Any]]:
     mx = settings.MAX_CHUNK_TOKENS
     ov = settings.CHUNK_OVERLAP_TOKENS
-    out: List[Dict[str, Any]] = []
+    out: List[dict[str, Any]] = []
     for sec in sections:
         out.extend(chunk_section(sec, mx, ov))
     logger.info(f"Built {len(out)} chunks from {len(sections)} sections")
@@ -701,7 +701,7 @@ def get_embeddings():
     return _embeddings_cache
 """,
   "backend/app/retrieval/__init__.py": """""",
-  "backend/app/retrieval/retriever.py": """from typing import List, Dict, Any
+  "backend/app/retrieval/retriever.py": """from typing import List, dict, Any
 from langchain.docstore.document import Document
 from ..db.vectorstore import load_faiss
 from sqlmodel import select
