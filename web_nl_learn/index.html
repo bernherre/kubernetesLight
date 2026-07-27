@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="nl" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123f38">
+  <meta name="description" content="Nederlands leren met beeld, geluid, betekenis en actief gebruik. Een volledig statische leeromgeving van A1 tot B2.">
+  <meta name="color-scheme" content="light dark">
+  <title>Nederlands, gewoon doen</title>
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Ga naar de inhoud</a>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Hoofdnavigatie">
+      <button class="brand" type="button" data-page="vandaag" aria-label="Ga naar Vandaag">
+        <span class="brand-mark" aria-hidden="true">NL</span>
+        <span class="brand-copy"><strong>Nederlands</strong><small>gewoon doen</small></span>
+      </button>
+
+      <nav class="main-nav">
+        <button class="nav-item active" type="button" data-page="vandaag"><span class="nav-icon" aria-hidden="true">⌂</span><span>Vandaag</span></button>
+        <button class="nav-item" type="button" data-page="leerpad"><span class="nav-icon" aria-hidden="true">↗</span><span>Leerpad</span></button>
+        <button class="nav-item" type="button" data-page="concepten"><span class="nav-icon" aria-hidden="true">◎</span><span>Concepten</span></button>
+        <button class="nav-item" type="button" data-page="grammatica"><span class="nav-icon" aria-hidden="true">¶</span><span>Grammatica</span></button>
+        <button class="nav-item" type="button" data-page="werkwoorden"><span class="nav-icon" aria-hidden="true">↻</span><span>Werkwoorden</span></button>
+        <button class="nav-item" type="button" data-page="woordenschat"><span class="nav-icon" aria-hidden="true">▦</span><span>Woordenschat</span></button>
+        <button class="nav-item" type="button" data-page="luisteren"><span class="nav-icon" aria-hidden="true">◖</span><span>Luisteren</span></button>
+        <button class="nav-item" type="button" data-page="oefenen"><span class="nav-icon" aria-hidden="true">✓</span><span>Oefenen</span></button>
+        <button class="nav-item" type="button" data-page="voortgang"><span class="nav-icon" aria-hidden="true">▥</span><span>Mijn voortgang</span></button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-goal">
+          <div><span>Dagdoel</span><strong><span id="goal-minutes">0</span> van 20 min</strong></div>
+          <div class="goal-track" aria-hidden="true"><i id="goal-bar"></i></div>
+        </div>
+        <button class="sidebar-action" id="open-settings" type="button"><span aria-hidden="true">⚙</span> Instellingen</button>
+        <a class="reference-link" href="reference.html">Oorspronkelijk naslagwerk <span aria-hidden="true">↗</span></a>
+      </div>
+    </aside>
+
+    <div class="main-column">
+      <header class="topbar">
+        <button class="menu-button" id="menu-button" type="button" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">☰</button>
+        <div class="topbar-title" aria-live="polite"><span id="page-context">Vandaag</span><small>beeld · geluid · betekenis · gebruik</small></div>
+        <div class="topbar-actions">
+          <button class="icon-button" id="theme-toggle" type="button" aria-label="Wissel tussen licht en donker">☾</button>
+          <span class="level-pill">A2</span>
+          <div class="streak" title="Oefenreeks"><span aria-hidden="true">🔥</span><div><strong id="streak-count">7 dagen</strong><small>mooie reeks</small></div></div>
+          <button class="avatar" type="button" aria-label="Profiel">BH</button>
+        </div>
+      </header>
+
+      <main id="main-content" tabindex="-1">
+        <div class="content-wrap">
+          <section class="page active" id="page-vandaag" aria-labelledby="vandaag-title">
+            <div class="welcome-row">
+              <div>
+                <span class="kicker" id="today-label">Jouw persoonlijke leerplan</span>
+                <h1 id="vandaag-title">Goedemorgen</h1>
+                <p>Leer Nederlands zoals je het gebruikt: eerst zien en horen, daarna begrijpen en zelf toepassen.</p>
+              </div>
+              <div class="day-score" aria-label="Dagdoel van twintig minuten"><strong>20</strong><span>minuten gepland</span></div>
+            </div>
+
+            <section class="method-strip" aria-label="Leermethode">
+              <div><b>1</b><span><strong>Beeld</strong><small>Zie de situatie</small></span></div>
+              <i aria-hidden="true">→</i>
+              <div><b>2</b><span><strong>Geluid</strong><small>Hoor natuurlijk Nederlands</small></span></div>
+              <i aria-hidden="true">→</i>
+              <div><b>3</b><span><strong>Betekenis</strong><small>Begrijp vorm en context</small></span></div>
+              <i aria-hidden="true">→</i>
+              <div><b>4</b><span><strong>Gebruik</strong><small>Spreek en oefen zelf</small></span></div>
+            </section>
+
+            <div class="dashboard-grid">
+              <button class="card daily-card" type="button" data-page="les">
+                <div class="daily-image"><img src="images/lesson-thuiswerken.svg" alt="Een persoon werkt thuis achter een laptop"></div>
+                <div class="daily-copy">
+                  <div class="eyebrow"><span>A2</span> Grammatica · 8 minuten</div>
+                  <h2>De persoonsvorm staat op plek twee</h2>
+                  <p>Ontdek de Nederlandse woordvolgorde in een herkenbare situatie.</p>
+                  <span class="start-link">Start de visuele les <span aria-hidden="true">→</span></span>
+                </div>
+              </button>
+
+              <section class="card plan-card" aria-labelledby="dagplan-title">
+                <div class="section-heading compact"><div><span class="kicker">Vandaag</span><h2 id="dagplan-title">Jouw dagplan</h2></div><span class="plan-total">20 min</span></div>
+                <div class="daily-plan" id="daily-plan"></div>
+              </section>
+
+              <section class="card voice-card" aria-labelledby="voice-title">
+                <div class="voice-visual" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+                <span class="kicker">Uitspraak</span>
+                <h2 id="voice-title">Hoor het verschil</h2>
+                <p>Luister naar dezelfde zin op normale en langzame snelheid.</p>
+                <div class="button-row"><button class="sound-button speak" type="button" data-text="Vandaag werk ik thuis." data-rate="0.92">🔊 Normaal</button><button class="sound-button secondary speak" type="button" data-text="Vandaag werk ik thuis." data-rate="0.62">🐢 Langzaam</button></div>
+                <small class="voice-status" id="voice-status">Nederlandse stem wordt gecontroleerd…</small>
+              </section>
+            </div>
+
+            <section class="section-block" aria-labelledby="woorden-vandaag">
+              <div class="section-heading"><div><span class="kicker">Beeldwoorden</span><h2 id="woorden-vandaag">Drie woorden voor vandaag</h2></div><button class="text-button" type="button" data-page="woordenschat">Bekijk alle woorden →</button></div>
+              <div class="vocabulary-grid compact-grid" id="daily-vocabulary"></div>
+            </section>
+
+            <section class="section-block two-up" aria-label="Voortgang en aandachtspunt">
+              <article class="card weekly-card">
+                <div class="section-heading compact"><div><span class="kicker">Ritme</span><h2>Deze week</h2></div><strong>72 min</strong></div>
+                <div class="week-chart" aria-label="Oefenminuten per dag">
+                  <div><i style="height:42%"></i><small>ma</small></div><div><i style="height:68%"></i><small>di</small></div><div><i style="height:55%"></i><small>wo</small></div><div><i style="height:84%"></i><small>do</small></div><div><i style="height:62%"></i><small>vr</small></div><div><i class="empty" style="height:24%"></i><small>za</small></div><div><i class="empty" style="height:24%"></i><small>zo</small></div>
+                </div>
+              </article>
+              <article class="card focus-card">
+                <span class="kicker">Jouw aandachtspunt</span>
+                <h2>Luister naar de persoonsvorm</h2>
+                <p>Je herkent de woorden al goed. Let nu op de positie van het werkwoord wanneer een zin met tijd begint.</p>
+                <button class="text-button" type="button" data-page="les">Oefen woordvolgorde →</button>
+              </article>
+            </section>
+          </section>
+
+          <section class="page" id="page-les" aria-labelledby="les-title">
+            <button class="back-button" type="button" data-page="vandaag">← Terug naar Vandaag</button>
+            <section class="card lesson-hero">
+              <div class="lesson-copy">
+                <div class="eyebrow"><span>A2</span> Grammatica · 8 minuten</div>
+                <h1 id="les-title">De persoonsvorm staat op plek twee</h1>
+                <p class="lead">Kijk eerst naar de situatie. Luister daarna naar de zin en ontdek hoe de woordvolgorde verandert.</p>
+                <div class="phrase-box">
+                  <div><small>Voorbeeldzin</small><strong>Vandaag werk ik thuis.</strong></div>
+                  <div class="audio-actions"><button class="sound-button speak" type="button" data-text="Vandaag werk ik thuis." data-rate="0.92">🔊 Luister</button><button class="sound-button secondary speak" type="button" data-text="Vandaag werk ik thuis." data-rate="0.62">🐢 Langzaam</button></div>
+                </div>
+              </div>
+              <figure class="lesson-image"><img src="images/lesson-thuiswerken.svg" alt="Een persoon werkt vandaag thuis achter een laptop"><figcaption class="image-labels"><button class="speak" type="button" data-text="vandaag">vandaag 🔊</button><button class="speak" type="button" data-text="werken">werken 🔊</button><button class="speak" type="button" data-text="thuis">thuis 🔊</button></figcaption></figure>
+            </section>
+
+            <section class="learning-flow" aria-label="Vier stappen van de les">
+              <article class="card"><b>1</b><div><strong>Kijk</strong><span>Wat zie je?</span></div></article>
+              <article class="card"><b>2</b><div><strong>Luister</strong><span>Hoe klinkt het?</span></div></article>
+              <article class="card"><b>3</b><div><strong>Begrijp</strong><span>Wat is de regel?</span></div></article>
+              <article class="card"><b>4</b><div><strong>Gebruik</strong><span>Maak zelf een zin.</span></div></article>
+            </section>
+
+            <div class="lesson-layout">
+              <section class="card panel" aria-labelledby="hoofdzin-title">
+                <div class="section-heading"><div><span class="kicker">Uitleg</span><h2 id="hoofdzin-title">De hoofdzin</h2></div><button class="icon-sound speak" type="button" data-text="In een hoofdzin staat de persoonsvorm op de tweede plaats." data-rate="0.86" aria-label="Luister naar de regel">🔊</button></div>
+                <p>In een gewone hoofdzin staat de <button class="inline-term speak" type="button" data-text="persoonsvorm" data-rate="0.75">persoonsvorm 🔊</button> op de tweede plaats.</p>
+                <div class="sentence-model" aria-label="Zinsmodel Vandaag werk ik thuis">
+                  <div class="slot first"><small>Plek 1</small><strong>Vandaag</strong><span>tijd</span></div><span class="model-arrow">→</span>
+                  <div class="slot verb"><small>Plek 2</small><strong>werk</strong><span>persoonsvorm</span></div><span class="model-arrow">→</span>
+                  <div class="slot"><small>Plek 3</small><strong>ik</strong><span>onderwerp</span></div><span class="model-arrow">→</span>
+                  <div class="slot"><small>Rest</small><strong>thuis</strong><span>plaats</span></div>
+                </div>
+                <div class="compare-box"><div><span>Normale volgorde</span><strong>Ik <mark>werk</mark> vandaag thuis.</strong></div><div><span>Tijd op plek 1</span><strong>Vandaag <mark>werk</mark> ik thuis.</strong></div></div>
+              </section>
+
+              <aside class="card panel connection-panel" aria-labelledby="verbonden-title">
+                <span class="kicker">Conceptenweb</span><h2 id="verbonden-title">Hiermee verbonden</h2>
+                <button type="button" data-page="grammatica" data-topic="woordvolgorde"><strong>Hoofdzin</strong><span>Persoonsvorm op plek 2</span></button>
+                <button type="button" data-page="grammatica" data-topic="bijzin"><strong>Bijzin</strong><span>Werkwoord naar het einde</span></button>
+                <button type="button" data-page="werkwoorden"><strong>Werkwoorden</strong><span>Herken de persoonsvorm</span></button>
+                <button type="button" data-page="concepten"><strong>Semantiek</strong><span>Wat krijgt nadruk?</span></button>
+              </aside>
+            </div>
+
+            <section class="card exercise-card" aria-labelledby="exercise-title">
+              <div class="exercise-intro"><span class="kicker">Zelf gebruiken</span><h2 id="exercise-title">Maak de zin</h2><p>Zet de woorden in de juiste volgorde. Begin met het tijdwoord.</p></div>
+              <div class="answer-zone" id="answer-zone" aria-live="polite"></div>
+              <div class="word-bank" id="word-bank" aria-label="Beschikbare woorden"></div>
+              <p class="feedback" id="exercise-feedback" aria-live="polite">Tik de woorden in de juiste volgorde aan.</p>
+              <div class="exercise-actions"><button class="primary-button" id="check-answer" type="button" disabled>Controleren</button><button class="secondary-button" id="listen-answer" type="button">🔊 Luister</button><button class="text-button" id="reset-exercise" type="button">Opnieuw</button></div>
+            </section>
+          </section>
+
+          <section class="page" id="page-leerpad" aria-labelledby="leerpad-title">
+            <div class="page-heading"><div><span class="kicker">Van A1 tot B2</span><h1 id="leerpad-title">Jouw leerpad</h1><p>Een duidelijke route van dagelijkse basis naar professioneel en natuurlijk Nederlands.</p></div><div class="legend"><span><i class="done"></i>afgerond</span><span><i class="current"></i>nu bezig</span><span><i></i>later</span></div></div>
+            <div class="level-path" id="level-path"></div>
+          </section>
+
+          <section class="page" id="page-concepten" aria-labelledby="concepten-title">
+            <div class="page-heading"><div><span class="kicker">Alles hangt samen</span><h1 id="concepten-title">Het conceptenweb</h1><p>Verken grammatica, werkwoorden, semantiek, uitspraak en communicatie als één verbonden systeem.</p></div></div>
+            <section class="card concept-hero"><img src="images/concept-map.svg" alt="Conceptenkaart met Nederlands in het midden en verbonden taaldomeinen"><div><span class="kicker">Slim navigeren</span><h2>Kies een domein</h2><p>Elk nieuw concept toont betekenis, voorbeelden, uitspraak en verwante onderwerpen.</p><div class="concept-tags"><span>vorm</span><span>betekenis</span><span>context</span><span>gebruik</span></div></div></section>
+            <div class="concept-grid" id="concept-grid"></div>
+            <section class="card concept-detail" id="concept-detail" aria-live="polite"></section>
+          </section>
+
+          <section class="page" id="page-grammatica" aria-labelledby="grammatica-title">
+            <div class="page-heading"><div><span class="kicker">Van vorm naar betekenis</span><h1 id="grammatica-title">Grammatica-atlas</h1><p>Regels in eenvoudige taal, met visuele modellen, audio en verbindingen naar andere concepten.</p></div></div>
+            <div class="filter-row" id="grammar-filters" aria-label="Filter grammatica op niveau"></div>
+            <div class="library-layout">
+              <div class="topic-list" id="grammar-list"></div>
+              <section class="card topic-detail" id="grammar-detail" aria-live="polite"></section>
+            </div>
+          </section>
+
+          <section class="page" id="page-werkwoorden" aria-labelledby="werkwoorden-title">
+            <div class="page-heading"><div><span class="kicker">Actie, tijd en modaliteit</span><h1 id="werkwoorden-title">Werkwoordentrainer</h1><p>Zie de vervoeging, hoor de uitspraak en gebruik het werkwoord direct in context.</p></div></div>
+            <div class="verb-layout">
+              <section class="card verb-picker"><label for="verb-select">Kies een werkwoord</label><select id="verb-select"></select><div class="verb-meaning" id="verb-meaning"></div><button class="sound-button speak-dynamic" id="speak-verb" type="button">🔊 Luister naar het werkwoord</button></section>
+              <section class="card verb-detail" id="verb-detail" aria-live="polite"></section>
+            </div>
+          </section>
+
+          <section class="page" id="page-woordenschat" aria-labelledby="woordenschat-title">
+            <div class="page-heading"><div><span class="kicker">Beeld + geluid + context</span><h1 id="woordenschat-title">Visuele woordenschat</h1><p>Leer woorden niet als losse vertalingen, maar als herkenbare begrippen in echte zinnen.</p></div><div class="search-wrap"><label class="sr-only" for="word-search">Zoek een woord</label><input id="word-search" type="search" placeholder="Zoek een woord…" autocomplete="off"></div></div>
+            <div class="filter-row" id="vocabulary-filters" aria-label="Filter woorden op thema"></div>
+            <div class="vocabulary-grid" id="vocabulary-grid"></div>
+          </section>
+
+          <section class="page" id="page-luisteren" aria-labelledby="luisteren-title">
+            <div class="page-heading"><div><span class="kicker">Betrouwbare uitspraak</span><h1 id="luisteren-title">Luisteren in context</h1><p>De scènes gebruiken gecontroleerde Nederlandse tekst en de beste beschikbare <code>nl-NL</code>-stem van je apparaat.</p></div></div>
+            <div class="notice-card"><span aria-hidden="true">✓</span><div><strong>Geen oude opnames in deze lessen</strong><p>De twijfelachtige WAV-bestanden uit het oorspronkelijke repo worden hier niet afgespeeld. Je hoort de gecontroleerde tekst via Nederlandse spraaksynthese.</p></div></div>
+            <div class="listening-grid" id="listening-grid"></div>
+          </section>
+
+          <section class="page" id="page-oefenen" aria-labelledby="oefenen-title">
+            <div class="page-heading"><div><span class="kicker">Korte actieve herhaling</span><h1 id="oefenen-title">Oefenen</h1><p>Woordvolgorde, lidwoorden en werkwoorden in kleine oefeningen met directe feedback.</p></div></div>
+            <div class="practice-tabs" role="tablist" aria-label="Soorten oefeningen">
+              <button class="active" type="button" role="tab" aria-selected="true" data-practice="order">Woordvolgorde</button>
+              <button type="button" role="tab" aria-selected="false" data-practice="article">De of het</button>
+              <button type="button" role="tab" aria-selected="false" data-practice="verb">Werkwoord</button>
+            </div>
+            <section class="card practice-stage" id="practice-stage" aria-live="polite"></section>
+          </section>
+
+          <section class="page" id="page-voortgang" aria-labelledby="voortgang-title">
+            <div class="page-heading"><div><span class="kicker">Alleen op dit apparaat</span><h1 id="voortgang-title">Mijn voortgang</h1><p>Je resultaten worden lokaal in je browser bewaard. Er wordt niets naar een server gestuurd.</p></div><button class="secondary-button" id="clear-progress" type="button">Wis lokale voortgang</button></div>
+            <div class="stat-grid">
+              <article class="card stat-card"><span>Vandaag</span><strong id="progress-minutes">0</strong><small>minuten</small></article>
+              <article class="card stat-card"><span>Oefeningen</span><strong id="progress-completed">0</strong><small>afgerond</small></article>
+              <article class="card stat-card"><span>Woorden gehoord</span><strong id="progress-audio">0</strong><small>luistermomenten</small></article>
+              <article class="card stat-card"><span>Beste reeks</span><strong>7</strong><small>dagen</small></article>
+            </div>
+            <div class="progress-layout">
+              <section class="card skill-panel"><span class="kicker">Vaardigheden</span><h2>Jouw profiel</h2><div id="skill-progress"></div></section>
+              <section class="card next-panel"><span class="kicker">Volgende stap</span><h2>Van A2 naar B1</h2><p>Focus op langere zinnen, luisteren op natuurlijke snelheid en actief vertellen wat er is gebeurd.</p><ul><li>Voltooide tijd</li><li>Bijzinnen met omdat en dat</li><li>Gesprekken op werk en school</li></ul><button class="primary-button" type="button" data-page="leerpad">Bekijk het leerpad</button></section>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <dialog class="settings-dialog" id="settings-dialog">
+    <form method="dialog">
+      <div class="dialog-heading"><div><span class="kicker">Persoonlijke ervaring</span><h2>Instellingen</h2></div><button class="icon-button" value="cancel" aria-label="Sluit instellingen">×</button></div>
+      <fieldset><legend>Weergave</legend><label class="setting-row"><span><strong>Donkere modus</strong><small>Rustiger bij weinig licht</small></span><input id="dark-mode-setting" type="checkbox" role="switch"></label></fieldset>
+      <fieldset><legend>Uitspraak</legend><label for="speech-rate">Standaardsnelheid <output id="speech-rate-output">0.9×</output></label><input id="speech-rate" type="range" min="0.55" max="1.1" step="0.05" value="0.9"><p class="setting-help" id="settings-voice-status">De browser kiest de beste beschikbare Nederlandse stem.</p><button class="secondary-button speak" type="button" data-text="Goedemorgen. Vandaag oefenen we Nederlands.">Test de stem</button></fieldset>
+      <div class="dialog-actions"><button class="primary-button" value="default">Klaar</button></div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <noscript><div class="noscript">Deze leeromgeving heeft JavaScript nodig voor audio, oefeningen en navigatie.</div></noscript>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+# Nederlands, gewoon doen
+
+Aplicación web estática para aprender neerlandés **usando solamente neerlandés dentro de la experiencia de aprendizaje**.
+
+La metodología central es:
+
+> **beeld → geluid → betekenis → gebruik**
+> imagen → sonido → significado → uso
+
+## Qué contiene esta versión
+
+- Dashboard diario con plan de 20 minutos.
+- Ruta completa **A1 → A2 → B1 → B2**.
+- Grafo de conceptos: gramática, verbos, semántica, vocabulario, pronunciación y comunicación.
+- Lección visual funcional sobre el orden de palabras.
+- Atlas de gramática con filtros por nivel.
+- Entrenador de verbos con tiempos, ejemplos y pronunciación.
+- Vocabulario visual por temas, buscador y frases de contexto.
+- Escenas de escucha con preguntas de comprensión.
+- Ejercicios de orden de palabras, artículos y conjugación.
+- Progreso local mediante `localStorage`.
+- Modo claro/oscuro y velocidad de pronunciación configurable.
+- PWA/offline básico mediante Service Worker.
+- Despliegue automático en GitHub Pages después de ejecutar las pruebas.
+
+## Pronunciación
+
+La aplicación principal **no utiliza los WAV heredados**, porque algunos no estaban bien validados. Las lecciones reproducen texto neerlandés controlado mediante `SpeechSynthesisUtterance`:
+
+1. busca primero una voz `nl-NL`;
+2. utiliza `nl-BE` como segunda opción;
+3. usa cualquier voz `nl-*` como último fallback neerlandés;
+4. siempre establece el idioma de la frase como `nl-NL`;
+5. permite velocidad normal, lenta y personalizada.
+
+La calidad final depende de las voces instaladas en el dispositivo. En Windows y Edge suelen estar disponibles voces neerlandesas de buena calidad.
+
+## Ejecutar localmente
+
+No requiere instalación de dependencias.
+
+```bash
+npm run serve
+```
+
+Luego abre:
+
+```text
+http://localhost:8080
+```
+
+No conviene abrir `index.html` directamente con doble clic porque los módulos ES y el Service Worker funcionan correctamente mediante HTTP.
+
+## Validar
+
+```bash
+npm run check
+```
+
+Las pruebas comprueban, entre otros puntos:
+
+- lógica del ejercicio de orden de palabras;
+- selección prioritaria de voz neerlandesa;
+- búsqueda y filtrado de vocabulario;
+- contenido A1–B2 y dominios clave;
+- ausencia de WAV heredados en la aplicación principal;
+- existencia de imágenes y archivos estáticos;
+- configuración del despliegue en GitHub Pages;
+- recursos principales de la caché offline.
+
+## Estructura
+
+```text
+.
+├── .github/workflows/deploy-pages.yml
+├── css/
+│   ├── styles.css
+│   └── reference.css
+├── images/
+│   ├── concept-map.svg
+│   ├── lesson-thuiswerken.svg
+│   ├── scene-*.svg
+│   └── woord-*.svg
+├── js/
+│   ├── content.js
+│   ├── learning.js
+│   ├── main.js
+│   └── reference.js
+├── tests/
+├── index.html
+├── reference.html
+├── manifest.webmanifest
+├── service-worker.js
+└── package.json
+```
+
+## Reutilización del repositorio anterior
+
+Se conserva:
+
+- la estructura Git y el historial disponible;
+- GitHub Pages;
+- licencia y avisos;
+- el material anterior en `reference.html`;
+- los audios heredados dentro del repositorio como material de archivo.
+
+La experiencia principal es la nueva interfaz. `reference.html` queda como referencia histórica y no determina el diseño ni la pronunciación de la aplicación actual.
+
+## GitHub Pages
+
+El workflow:
+
+1. ejecuta `npm test`;
+2. publica el repositorio como sitio estático;
+3. despliega únicamente si las pruebas pasan.
+
+## Openen zonder installatie
+
+Je kunt `index.html` rechtstreeks met Chrome of Edge openen. De browserbundle `js/app.js` gebruikt geen ES-module-imports, zodat navigatie en oefeningen ook via dubbelklik werken. Voor de beste lokale PWA-ervaring kun je nog steeds `npm run serve` gebruiken.

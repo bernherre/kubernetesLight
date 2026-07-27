@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" role="img" aria-labelledby="title desc">
+  <title id="title">Vandaag werk ik thuis</title>
+  <desc id="desc">Een persoon werkt thuis achter een laptop, met een klok en een raam op de achtergrond.</desc>
+  <rect width="760" height="460" rx="32" fill="#f5efe1"/>
+  <circle cx="650" cy="82" r="48" fill="#f4c46b"/>
+  <rect x="58" y="55" width="218" height="170" rx="14" fill="#d8e9e1" stroke="#173b36" stroke-width="5"/>
+  <path d="M167 58v164M61 140h212" stroke="#173b36" stroke-width="5"/>
+  <path d="M65 132c50-35 86-29 126 0 31 22 55 22 80-2v90H65z" fill="#9bc8b6"/>
+  <circle cx="548" cy="120" r="48" fill="#fffdf8" stroke="#173b36" stroke-width="5"/>
+  <path d="M548 120V92M548 120l22 11" stroke="#173b36" stroke-width="5" stroke-linecap="round"/>
+  <rect x="98" y="328" width="548" height="28" rx="14" fill="#b06d49"/>
+  <rect x="136" y="353" width="24" height="84" rx="10" fill="#8a5035"/>
+  <rect x="584" y="353" width="24" height="84" rx="10" fill="#8a5035"/>
+  <rect x="350" y="249" width="164" height="90" rx="8" fill="#203f4a"/>
+  <rect x="365" y="263" width="134" height="61" rx="4" fill="#d8f0e9"/>
+  <path d="M332 340h202" stroke="#173b36" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="260" cy="214" r="43" fill="#d89c78"/>
+  <path d="M217 206c8-50 76-67 94-10-24-7-44-16-61-33-5 18-16 32-33 43z" fill="#332d2a"/>
+  <path d="M214 264c16-30 80-34 99 0l27 82H188z" fill="#d96354"/>
+  <path d="m306 280 55 36M221 282l-30 50" stroke="#d89c78" stroke-width="20" stroke-linecap="round"/>
+  <rect x="78" y="274" width="70" height="54" rx="7" fill="#fffdf8" stroke="#173b36" stroke-width="4"/>
+  <path d="M102 274v-15h25v15M109 300h12M115 293v14" stroke="#173b36" stroke-width="4"/>
+  <g font-family="Arial, sans-serif" font-weight="700" fill="#173b36">
+    <text x="610" y="430" font-size="22">thuis</text>
+  </g>
+</svg>

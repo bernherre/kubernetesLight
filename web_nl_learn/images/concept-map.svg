@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Conceptenkaart Nederlands</title>
+  <desc id="desc">Een kaart die grammatica, werkwoorden, semantiek, communicatie, uitspraak en thema's met elkaar verbindt.</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#173b36" flood-opacity=".12"/></filter>
+  </defs>
+  <rect width="1200" height="760" rx="34" fill="#f7f4ec"/>
+  <g stroke="#abc2ba" stroke-width="3" fill="none">
+    <path d="M600 380L255 180M600 380L600 125M600 380L955 180M600 380L1030 400M600 380L910 630M600 380L300 635M600 380L165 405"/>
+    <path d="M255 180L120 105M255 180L215 70M255 180L370 85"/>
+    <path d="M600 125L500 45M600 125L695 45"/>
+    <path d="M955 180L890 75M955 180L1060 88"/>
+    <path d="M1030 400L1115 320M1030 400L1120 475"/>
+    <path d="M910 630L1025 690M910 630L785 700"/>
+    <path d="M300 635L175 690M300 635L430 710"/>
+    <path d="M165 405L75 320M165 405L70 500"/>
+  </g>
+  <g font-family="Arial, sans-serif" text-anchor="middle" filter="url(#shadow)">
+    <g><rect x="490" y="322" width="220" height="116" rx="30" fill="#173b36"/><text x="600" y="372" fill="#fff" font-size="30" font-weight="800">Nederlands</text><text x="600" y="402" fill="#c9ded6" font-size="16">beeld · geluid · betekenis</text></g>
+    <g><rect x="145" y="135" width="220" height="90" rx="22" fill="#d9ebe4" stroke="#2c7567"/><text x="255" y="174" fill="#173b36" font-size="24" font-weight="800">Grammatica</text><text x="255" y="201" fill="#60726d" font-size="14">vorm en structuur</text></g>
+    <g><rect x="490" y="80" width="220" height="90" rx="22" fill="#f9e3d6" stroke="#e87d47"/><text x="600" y="119" fill="#173b36" font-size="24" font-weight="800">Werkwoorden</text><text x="600" y="146" fill="#60726d" font-size="14">actie, tijd en modaliteit</text></g>
+    <g><rect x="845" y="135" width="220" height="90" rx="22" fill="#e6e2f3" stroke="#7768a6"/><text x="955" y="174" fill="#173b36" font-size="24" font-weight="800">Semantiek</text><text x="955" y="201" fill="#60726d" font-size="14">betekenis en relaties</text></g>
+    <g><rect x="920" y="355" width="220" height="90" rx="22" fill="#dcebf5" stroke="#4c86a8"/><text x="1030" y="394" fill="#173b36" font-size="24" font-weight="800">Communicatie</text><text x="1030" y="421" fill="#60726d" font-size="14">luisteren en spreken</text></g>
+    <g><rect x="800" y="585" width="220" height="90" rx="22" fill="#f6e6b8" stroke="#b58b24"/><text x="910" y="624" fill="#173b36" font-size="24" font-weight="800">Thema's</text><text x="910" y="651" fill="#60726d" font-size="14">wonen, werk, gezin</text></g>
+    <g><rect x="190" y="590" width="220" height="90" rx="22" fill="#f2dede" stroke="#aa5f5f"/><text x="300" y="629" fill="#173b36" font-size="24" font-weight="800">Uitspraak</text><text x="300" y="656" fill="#60726d" font-size="14">klank, ritme, klemtoon</text></g>
+    <g><rect x="55" y="360" width="220" height="90" rx="22" fill="#e4edd7" stroke="#6f8b4c"/><text x="165" y="399" fill="#173b36" font-size="24" font-weight="800">Woordenschat</text><text x="165" y="426" fill="#60726d" font-size="14">woorden in context</text></g>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#173b36">
+    <g><rect x="54" y="72" width="132" height="46" rx="17" fill="#fff"/><text x="120" y="101">woordsoorten</text></g>
+    <g><rect x="154" y="36" width="122" height="46" rx="17" fill="#fff"/><text x="215" y="65">zinsdelen</text></g>
+    <g><rect x="306" y="52" width="128" height="46" rx="17" fill="#fff"/><text x="370" y="81">woordvolgorde</text></g>
+    <g><rect x="435" y="17" width="130" height="46" rx="17" fill="#fff"/><text x="500" y="46">vervoeging</text></g>
+    <g><rect x="636" y="17" width="118" height="46" rx="17" fill="#fff"/><text x="695" y="46">tijden</text></g>
+    <g><rect x="825" y="43" width="130" height="46" rx="17" fill="#fff"/><text x="890" y="72">synoniemen</text></g>
+    <g><rect x="997" y="57" width="126" height="46" rx="17" fill="#fff"/><text x="1060" y="86">collocaties</text></g>
+    <g><rect x="1060" y="286" width="126" height="46" rx="17" fill="#fff"/><text x="1123" y="315">gesprekken</text></g>
+    <g><rect x="1062" y="460" width="120" height="46" rx="17" fill="#fff"/><text x="1122" y="489">schrijven</text></g>
+    <g><rect x="977" y="675" width="116" height="46" rx="17" fill="#fff"/><text x="1035" y="704">werk</text></g>
+    <g><rect x="713" y="684" width="144" height="46" rx="17" fill="#fff"/><text x="785" y="713">samenleving</text></g>
+    <g><rect x="99" y="675" width="152" height="46" rx="17" fill="#fff"/><text x="175" y="704">klinkers</text></g>
+    <g><rect x="362" y="688" width="136" height="46" rx="17" fill="#fff"/><text x="430" y="717">zinsritme</text></g>
+    <g><rect x="14" y="285" width="122" height="46" rx="17" fill="#fff"/><text x="75" y="314">beelden</text></g>
+    <g><rect x="10" y="485" width="120" height="46" rx="17" fill="#fff"/><text x="70" y="514">context</text></g>
+  </g>
+</svg>

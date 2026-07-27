@@ -1,0 +1,19 @@
+{
+  "name": "Nederlands, gewoon doen",
+  "short_name": "Nederlands",
+  "description": "Nederlands leren met beeld, geluid, betekenis en actief gebruik.",
+  "lang": "nl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f3ee",
+  "theme_color": "#123f38",
+  "icons": [
+    {
+      "src": "images/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
